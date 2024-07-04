@@ -236,14 +236,13 @@ if __name__ == '__main__':
             gaussian_sigma=opt.gaussian_sigma
         )
 
-        if len(dataset) == 0:
-            print(f"Dataset at {dataset_path['real_path']} and {dataset_path['fake_path']} is empty. Skipping.")
-            continue
 
         loader = torch.utils.data.DataLoader(dataset, batch_size=opt.batch_size, shuffle=False, num_workers=4)
+        print('found image!')
         results = validate(model, loader, find_thres=True)
 
         if results is None:
+            print(f"Dataset at {dataset_path['real_path']} and {dataset_path['fake_path']} is empty. Skipping.")
             continue
 
         ap, r_acc0, f_acc0, acc0, r_acc1, f_acc1, acc1, best_thres = results
