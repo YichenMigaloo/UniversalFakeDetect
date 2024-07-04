@@ -126,74 +126,7 @@ def get_list(path, must_contain=''):
     return image_list
 
 
-class RealFakeDataset(Dataset):
-    def __init__(self, data_dict, arch, jpeg_quality=None, gaussian_sigma=None):
-        self.data_dict = data_dict
-        self.jpeg_quality = jpeg_quality
-        self.gaussian_sigma = gaussian_sigma
-        
-        self.images = []
-        self.labels = []
 
-        for label, images in data_dict.items():
-            self.images.extend(images)
-            self.labels.extend([label] * len(images))
-
-        stat_from = "imagenet" if arch.lower().startswith("imagenet") else "clip"
-        self.transform = transforms.Compose([
-            transforms.CenterCrop(224),
-            transforms.ToTensor(),
-            transforms.Normalize(mean=MEAN[stat_from], std=STD[stat_from]),
-        ])
-
-    def __len__(self):
-        return len(self.images)
-
-    def __getitem__(self, idx):
-        img = self.images[idx]
-        label = self.labels[idx]
-
-        if isinstance(img, np.ndarray):
-            img = Image.fromarray(img)
-
-        if self.gaussian_sigma is not None:
-            img = self.gaussian_blur(img, self.gaussian_sigma)
-        if self.jpeg_quality is not None:
-            img = self.png2jpg(img, self.jpeg_quality)
-
-        img = self.transform(img)
-        return img, label
-
-    def png2jpg(self, img, quality):
-        out = BytesIO()
-        img.save(out, format='jpeg', quality=quality)  # ranging from 0-95, 75 is default
-        img = Image.open(out)
-        img = np.array(img)
-        out.close()
-        return Image.fromarray(img)
-
-    def gaussian_blur(self, img, sigma):
-        img = np.array(img)
-        gaussian_filter(img[:, :, 0], output=img[:, :, 0], sigma=sigma)
-        gaussian_filter(img[:, :, 1], output=img[:, :, 1], sigma=sigma)
-        gaussian_filter(img[:, :, 2], output=img[:, :, 2], sigma=sigma)
-        return Image.fromarray(img)
-
-# Example data dictionary
-data_dict = {
-    0: [Image.open("real_image1.jpg"), Image.open("real_image2.jpg")],
-    1: [Image.open("fake_image1.jpg"), Image.open("fake_image2.jpg")]
-}
-
-# Example usage
-dataset = RealFakeDataset(data_dict, arch='res50')
-#dataloader = DataLoader(dataset, batch_size=4, shuffle=True)
-
-# Check the data loader
-#for images, labels in dataloader:
-    #print(images.shape, labels)
-
-"""
 class RealFakeDataset(Dataset):
     def __init__(self, real_path, fake_path, data_mode, max_sample, arch, jpeg_quality=None, gaussian_sigma=None):
         assert data_mode in ["wang2020", "ours"]
@@ -260,7 +193,8 @@ class RealFakeDataset(Dataset):
 
         img = self.transform(img)
         return img, label
-"""
+    
+    
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--real_path', type=str, default=None, help='dir name or a pickle')
