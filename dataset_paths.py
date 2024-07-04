@@ -153,6 +153,13 @@ DATASET_PATHS = [
         fake_path='UniversalFakeDetect/datasets/progan/airplane/1_fake',
         data_mode='wang2020',
         key='testtest'
+    ),
+
+    dict(
+        real_path= 'UniversalFakeDetect/diffusion_datasets/dalle',
+        fake_path='UniversalFakeDetect/diffusion_datasets/ldm_100',
+        data_mode='wang2020',
+        key='testtest'
     )
 
 
