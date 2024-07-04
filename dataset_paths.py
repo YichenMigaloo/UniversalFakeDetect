@@ -158,7 +158,7 @@ DATASET_PATHS = [
     dict(
         real_path= 'UniversalFakeDetect/diffusion_datasets/imagenet',
         fake_path='UniversalFakeDetect/diffusion_datasets/ldm_100',
-        data_mode='wang2020',
+        data_mode=' ',
         key='testtest2'
     )
 
