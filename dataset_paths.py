@@ -5,7 +5,7 @@ DATASET_PATHS = [
         fake_path='UniversalFakeDetect/datasets/test/progan/1_fake',
         data_mode='',
         key='testtest'
-    ),
+    )""",
 
     dict(
         real_path='../FAKE_IMAGES/CNN/test/progan',     
@@ -163,6 +163,6 @@ DATASET_PATHS = [
         key='testtest2'
     )
 
-
+"""
 
 ]
