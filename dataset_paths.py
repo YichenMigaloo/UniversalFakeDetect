@@ -3,9 +3,10 @@ DATASET_PATHS = [
     dict(   
         real_path= 'UniversalFakeDetect/datasets/progan/airplane/0_real',
         fake_path='UniversalFakeDetect/datasets/progan/airplane/1_fake',
-        data_mode='wang2020',
+        data_mode='',
         key='testtest'
     ),
+
     dict(
         real_path='../FAKE_IMAGES/CNN/test/progan',     
         fake_path='../FAKE_IMAGES/CNN/test/progan',
