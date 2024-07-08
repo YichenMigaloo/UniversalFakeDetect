@@ -140,7 +140,7 @@ class RealFakeDataset(Dataset):
         else:
             real_list = []
             fake_list = []
-            print('not instance!!')
+            print('not isinstance!!')
             for real_p, fake_p in zip(real_path, fake_path):
                 real_l, fake_l = self.read_path(real_p, fake_p, data_mode, max_sample)
                 real_list += real_l
