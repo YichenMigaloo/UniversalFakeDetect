@@ -129,10 +129,11 @@ def get_list(path, must_contain=''):
 
 class RealFakeDataset(Dataset):
     def __init__(self, real_path, fake_path, data_mode, max_sample, arch, jpeg_quality=None, gaussian_sigma=None):
-        assert data_mode in ["wang2020", "ours"]
+        #assert data_mode in ["wang2020", "ours"]
         self.jpeg_quality = jpeg_quality
         self.gaussian_sigma = gaussian_sigma
-
+        print('real path', real_path)
+        print('fake_path', fake_path)
         if isinstance(real_path, str) and isinstance(fake_path, str):
             real_list, fake_list = self.read_path(real_path, fake_path, data_mode, max_sample)
         else:
@@ -194,7 +195,7 @@ class RealFakeDataset(Dataset):
         img = self.transform(img)
         return img, label
     
-    
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--real_path', type=str, default=None, help='dir name or a pickle')
@@ -238,6 +239,7 @@ if __name__ == '__main__':
             jpeg_quality=opt.jpeg_quality,
             gaussian_sigma=opt.gaussian_sigma
         )
+        
 
 
         loader = torch.utils.data.DataLoader(dataset, batch_size=opt.batch_size, shuffle=False, num_workers=4)
