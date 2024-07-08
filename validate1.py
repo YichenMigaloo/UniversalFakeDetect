@@ -169,8 +169,11 @@ class RealFakeDataset(Dataset):
             fake_list = get_list(fake_path, must_contain='1_fake')
         else:
             print('not wang2020')
-            real_list = get_list(real_path)
-            fake_list = get_list(fake_path)
+            #real_list = get_list(real_path)
+            #fake_list = get_list(fake_path)
+            real_list = [os.path.join(real_path, image_name) for image_name in os.listdir(real_path) if image_name.lower().endswith(('.png', '.jpg', '.jpeg'))]
+            fake_list = [os.path.join(fake_path, image_name) for image_name in os.listdir(fake_path) if image_name.lower().endswith(('.png', '.jpg', '.jpeg'))]
+
 
         if max_sample is not None:
             if (max_sample > len(real_list)) or (max_sample > len(fake_list)):
