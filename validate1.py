@@ -164,9 +164,11 @@ class RealFakeDataset(Dataset):
 
     def read_path(self, real_path, fake_path, data_mode, max_sample):
         if data_mode == 'wang2020':
+            print('wang2020 check')
             real_list = get_list(real_path, must_contain='0_real')
             fake_list = get_list(fake_path, must_contain='1_fake')
         else:
+            print('not wang2020')
             real_list = get_list(real_path)
             fake_list = get_list(fake_path)
 
