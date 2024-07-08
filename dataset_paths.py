@@ -1,8 +1,8 @@
 DATASET_PATHS = [
 
     dict(   
-        real_path= 'UniversalFakeDetect/datasets/test/progan/airplane/0_real',
-        fake_path='UniversalFakeDetect/datasets/test/progan/airplane/1_fake',
+        real_path= 'UniversalFakeDetect/datasets/test/progan/0_real',
+        fake_path='UniversalFakeDetect/datasets/test/progan/1_fake',
         data_mode='',
         key='testtest'
     ),
