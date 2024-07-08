@@ -265,9 +265,12 @@ if __name__ == '__main__':
             continue
 
         ap, r_acc0, f_acc0, acc0, r_acc1, f_acc1, acc1, best_thres = results
+        print(ap, r_acc0, f_acc0, acc0, r_acc1, f_acc1, acc1, best_thres)
 
         with open(os.path.join(opt.result_folder, 'ap.txt'), 'a') as f:
             f.write(f"{dataset_path['key']}: {round(ap*100, 2)}\n")
+            print("write1")
 
         with open(os.path.join(opt.result_folder, 'acc0.txt'), 'a') as f:
             f.write(f"{dataset_path['key']}: {round(r_acc0*100, 2)}  {round(f_acc0*100, 2)}  {round(acc0*100, 2)}\n")
+            print('write2')
