@@ -135,10 +135,12 @@ class RealFakeDataset(Dataset):
         print('real path', real_path)
         print('fake_path', fake_path)
         if isinstance(real_path, str) and isinstance(fake_path, str):
+            print('isinstance check!')
             real_list, fake_list = self.read_path(real_path, fake_path, data_mode, max_sample)
         else:
             real_list = []
             fake_list = []
+            print('not instance!!')
             for real_p, fake_p in zip(real_path, fake_path):
                 real_l, fake_l = self.read_path(real_p, fake_p, data_mode, max_sample)
                 real_list += real_l
