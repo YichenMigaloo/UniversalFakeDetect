@@ -165,8 +165,12 @@ class RealFakeDataset(Dataset):
     def read_path(self, real_path, fake_path, data_mode, max_sample):
         if data_mode == 'wang2020':
             print('wang2020 check')
-            real_list = get_list(real_path, must_contain='0_real')
-            fake_list = get_list(fake_path, must_contain='1_fake')
+            #real_list = get_list(real_path, must_contain='0_real')
+            #fake_list = get_list(fake_path, must_contain='1_fake')
+            real_list = [os.path.join(real_path, image_name) for image_name in os.listdir(real_path) if image_name.lower().endswith(('.png', '.jpg', '.jpeg'))]
+            fake_list = [os.path.join(fake_path, image_name) for image_name in os.listdir(fake_path) if image_name.lower().endswith(('.png', '.jpg', '.jpeg'))]
+            print(len(real_list))
+            print(len(fake_list))
         else:
             print('not wang2020')
             #real_list = get_list(real_path)
