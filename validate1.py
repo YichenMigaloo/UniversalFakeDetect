@@ -257,7 +257,7 @@ if __name__ == '__main__':
         loader = torch.utils.data.DataLoader(dataset, batch_size=opt.batch_size, shuffle=False, num_workers=4)
         print('found image!')
         results = validate(model, loader, find_thres=True)
-        print(opt.real_path, opt.fake_path)
+        print(dataset_path['real_path'], dataset_path['fake_path'])
         print('loaded to model.')
 
         if results is None:
